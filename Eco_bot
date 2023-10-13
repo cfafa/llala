@@ -45,3 +45,4 @@ if message.content(2):
 
 
 bot.run("token")
+client.run("token")
