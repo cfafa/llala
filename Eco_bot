@@ -5,7 +5,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 bot = commands.Bot(command_prefix='/', intents=intents)
-
+client = discord.Client(intents=intents)
 
 @bot.event
 async def on_ready():
@@ -14,11 +14,11 @@ async def on_ready():
 
 @bot.command()
 async def hello(ctx):
-    await ctx.send(f'Привет! Я бот(потом придумаем), который поможет вам найти ближайшие центры переработки мусора, а также расскажет как правильно сортировать мусор{bot.user}')
+    await ctx.send(f'Привет! Я Eco_bot, который поможет вам найти ближайшие центры переработки мусора, а также расскажет как правильно сортировать мусор{bot.user}')
     await ctx.send(f'Напишите 1, если хотите узнать, где ближайший центр переработки. 2, если хотите узнать, как правильно сортировать мусор')
 
-
-if 
+@client.event
+if message.content
     @bot.command()
     async def function(ctx):
         await ctx.send(f'Наши услуги доступны на территории СНГ: Россия: Москвы, Санкт-Петербурга, Екатеринбурга, Сочи; Казахстан: Алма-Ата, Астана; (ну дальше придумаем).  Напишите свой город, если он есть в этом списке')
@@ -28,10 +28,11 @@ if
 
 
 #инструкция как правильно сортировать мусор
-if 
+@client.event
+if message.content(2):
     @bot.command()
     async def instruction(ctx):
-        await ctx.send
+        await ctx.send(
 
 
 
