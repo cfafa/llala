@@ -18,28 +18,41 @@ async def on_ready():
 @bot.command()
 async def hello(ctx):
     await ctx.send(f'Привет! Я Eco_bot, который поможет вам найти ближайшие центры переработки мусора, а также расскажет как правильно сортировать мусор{bot.user}')
-    await ctx.send(f'Напишите 1, если хотите узнать, где ближайший центр переработки. 2, если хотите узнать, как правильно сортировать мусор')
+    await ctx.send(f'Напишите "/1", если хотите узнать, где ближайший центр переработки. "/2", если хотите узнать, как правильно сортировать мусор. "/3", если хотите узнать доп.функции{bot.user}')
 
 @client.event
-if message.content(1):
-    @bot.command()
-    async def function(ctx):
-        await ctx.send(f'Наши услуги доступны на территории СНГ: Россия: Москвы, Санкт-Петербурга, Екатеринбурга, Сочи; Казахстан: Алма-Ата, Астана; (ну дальше придумаем).  Напишите свой город, если он есть в этом списке')
-
-
-
-
+async def on_message(message):
+    if message.content.startwith("/1"):
+        @bot.command()
+        async def function(ctx):
+            await ctx.send(f'Наши услуги доступны на территории  Москвы, Санкт-Петербурга.  Напишите свой город, если он есть в этом списке{bot.user}')
+    elif message.content.startwith("Москва"):
+        @bot.command()
+        async def function(ctx):
+            await ctx.send(f'Экотрейд по адресу Дорожная ул., 3, корп. 1; Экоцентр Собиратор по адресу Кавказский бул., 56, стр. 12; Вторсырьепереработка по адресу Краснопрудная ул., 3-5с1; ГК управление Отходами по адресу Варшавское ш., 1, стр. 17{bot.user}')
+    elif message.content.startwith("Санкт-Петербург"):
+            @bot.command()
+            async def function(ctx):
+                await ctx.send(f'Переработкинская по адресу Кожевенная линия, 34Е; 7other по адресу Софийская ул., 127, корп. 11, посёлок Петро-Славянка; Зелёнка по адресу просп. Науки, 17, корп. 8; Экострой по адресу Волхонское ш., 116, корп. 3{bot.user}')
+         
 
 #инструкция как правильно сортировать мусор
 @client.event
-if message.content(2):
-    @bot.command()
-    async def instruction(ctx):
-        images = (os.listdir('images'))
-        with open(f'images/{instruction1}', 'rb') as f:
-                picture = discord.File(f)
-       
-        await ctx.send(file=picture)
+async def on_message(message):
+    if message.content.startwith("/2"):
+        @bot.command()
+        async def instruction(ctx):
+            images = (os.listdir('bot_ecology'))
+            with open(f'bot_ecology/{instruction1}', 'rb') as f:
+                    picture = discord.File(f)
+        
+            await ctx.send(file=picture)
+
+
+
+
+
+
 
 
 
